@@ -1,0 +1,76 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block body%}
+<!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full bg-white">
+  <body class="h-full">
+  ```
+-->
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img class="mx-auto h-20 w-auto" src="data:image/png;base64,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" alt="Your Company">
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+    </div>
+  
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+          
+        <div>
+            <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Role</label>
+            <div class="mt-2">
+              <select id="country" name="role" autocomplete="country-name" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#3C2317] sm:text-sm sm:leading-6">
+                <option value="doctor">Doctor</option>
+                <option value ="pharma">Pharmacist</option>
+              </select>
+            </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+          <div class="mt-2">
+            <input id="email" name="username" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#3C2317] sm:text-sm sm:leading-6">
+          </div>
+        </div>
+  
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+          </div>
+          <div class="mt-2">
+            <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#3C2317] sm:text-sm sm:leading-6">
+          </div>
+        </div>
+  
+        <div>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-[#3C2317] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#3C84AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3C2317]">Sign in</button>
+        </div>
+      </form>
+  
+      <p class="mt-10 text-center text-sm text-gray-500">
+        <a href="#" class="font-semibold text-[#3C2317] hover:text-[#3C84AB]">Forgot password?</a>
+      </p>
+    </div>
+  </div>
+  
+
+{% endblock %}

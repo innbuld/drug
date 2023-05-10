@@ -1,0 +1,181 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block body %}
+<nav class="bg-gray-800">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <!--
+              Icon when menu is closed.
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+            <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <!--
+              Icon when menu is open.
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+            <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex flex-shrink-0 items-center">
+            <img class="block h-8 w-auto lg:hidden" src="data:image/png;base64,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" alt="Your Company">
+            <img class="hidden h-8 w-auto lg:block" src="data:image/png;base64,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" alt="Your Company">
+          </div>
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+              <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">MUIZZ'S LAB</a>
+              <!-- <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div>
+            <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">PHARMACIST'S ROLE</a>
+            </div>
+          <!-- Profile dropdown -->
+          <div class="relative ml-9">
+        
+            <div>
+              <button type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <span class="sr-only">Open user menu</span>
+                <img class="h-8 w-8 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlVIo_qNcu39NUSj22geFkXz3MGka5LOlqaA&usqp=CAU" alt="">
+              </button>
+            </div>
+  
+            <!--
+              Dropdown menu, show/hide based on menu state.
+  
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+          </div>
+
+          <a href="{% url 'logout' %}"><button type="button" class="rounded-full bg-gray-800 ml-9 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            <span class="sr-only">Logout</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+              </svg>              
+          </button></a>
+        </div>
+      </div>
+    </div>
+
+  </nav>
+
+  
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-5">
+    {% include 'messages/mssg.html' %}
+  </div>
+
+
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-5">
+        
+  <div class="lg:flex lg:items-center lg:justify-between">
+    <div class="min-w-0 flex-1">
+      <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Drug Dispense Requests</h2>
+      <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
+      </div>
+    </div>
+    <div class="mt-5 flex lg:ml-4 lg:mt-0">
+   
+      <span class="sm:ml-3">
+        <!-- <a href="{% url 'prescription' %}"><button type="button" class="inline-flex items-center rounded-md bg-[#3C84AB] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#3C84AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3C84AB]">
+          <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+          </svg>
+          New Prescription
+        </button></a> -->
+      </span>
+
+    </div>
+  </div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <!-- component -->
+<div class="overflow-hidden rounded-lg border border-gray-200 shadow-md mt-5">
+    <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Patient</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Prescription</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Date</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Status</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Action</th>
+        </tr>
+      </thead>
+      
+      <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+        {% for p in prescriptions %}
+        <tr class="hover:bg-gray-50">
+          <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
+            <div class="text-sm">
+              <div class="font-medium text-gray-700">{{p.patient}}</div>
+              <div class="text-gray-400">Doctor: {{p.doctor.username}}</div>
+            </div>
+          </th>
+          <td class="px-6 py-4">
+            <!-- <span
+              class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+            > -->
+              <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+              {{p.pres}}
+            </span>
+          </td>
+          <td class="px-6 py-4">{{p.date}}</td>
+          <td class="px-6 py-4">
+            <div class="flex gap-2">
+                {% if p.dispensed %}
+              <span class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+                Dispensed
+              </span>
+              {% else %}
+              <span class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
+                Yet to Dispense
+              </span>
+              {% endif %}
+             
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <div class="flex justify-end gap-4">
+                <a href="{% url 'report' p.pk %}"><span
+                class="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-[#3C84AB]"
+              >
+                Generate Report
+              </span></a>
+              
+              <a href="{% url 'dispense' p.pk %}"><span
+                class="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs font-semibold text-yellow-600"
+              >
+                Mark as dispensed
+              </span></a>
+
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </div>
+  
+  
+{% endblock %}

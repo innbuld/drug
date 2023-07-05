@@ -24,9 +24,15 @@ def index(request):
 
             login(request, user)
             if role == "doctor":
-                return HttpResponseRedirect(reverse("doctor"))
+                if user.is_doctor:
+                    return HttpResponseRedirect(reverse("doctor"))
+                messages.error(request, "Only Doctors have access to this portal!")
+                return HttpResponseRedirect(reverse("index"))
 
-            return HttpResponseRedirect(reverse("pharma"))
+            if user.is_pharmacist:
+                return HttpResponseRedirect(reverse("pharma"))
+            messages.error(request, "Only Pharmacist have access to this portal!")
+            return HttpResponseRedirect(reverse("index"))
 
 
         return HttpResponse("User not registered") 

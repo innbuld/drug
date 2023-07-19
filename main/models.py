@@ -14,3 +14,4 @@ class Prescription(models.Model):
     dispensed_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="p_dispensed")
     date = models.DateTimeField(auto_now=True)
 
+

@@ -63,6 +63,7 @@ def prescription(request):
                 doctor = request.user,
                 patient = patient,
                 pres = doctor_prescription,
+                
                 dispensed = False,
                 dispensed_by= request.user
             )
@@ -87,6 +88,28 @@ def report(request, id):
     return render(request, 'main/report.html', {"p":pre})
 
 @login_required
+def general(request, id):
+    try:
+        pre = models.Prescription.objects.get(pk=id)
+    except Prescription.DoesNotExist:
+        messages.error(request, "Prescription does not exist")
+        return HttpResponseRedirect(reverse("doctor"))
+
+    return render(request, 'main/general.html', {"p":gen})
+
+@login_required
+def delete(request, id):
+    try:
+        pre = models.Prescription.objects.get(pk=id)
+    except Prescription.DoesNotExist:
+        messages.error(request, "Prescription does not exist")
+        return HttpResponseRedirect(reverse("doctor"))
+
+    pre.delete()
+    messages.success(request, "Prescription deleted successfully!")
+    return HttpResponseRedirect(reverse("doctor"))
+
+@login_required
 def dispense(request, id):
     try:
        pre = models.Prescription.objects.get(pk=id)
@@ -98,7 +121,7 @@ def dispense(request, id):
     pre.dispensed_by = request.user
     pre.save()
 
-    messages.success(request, "Dispenssed Successfully!")
+    messages.success(request, "Dispensed Successfully!")
     return HttpResponseRedirect(reverse("pharma"))
 
 @login_required
